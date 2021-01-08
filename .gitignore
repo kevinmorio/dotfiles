@@ -1,0 +1,6 @@
+# Ignore qutebrowser bookmarks
+qutebrowser/bookmarks
+qutebrowser/quickmarks
+
+# Ignore vim netrw history
+nvim/.netrwhist
