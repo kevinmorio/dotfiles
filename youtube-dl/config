@@ -1,0 +1,106 @@
+# Force resume of partially downloaded files
+--continue
+
+# Continue on download errors, for example to skip unavailable videos in a channel
+--ignore-errors
+
+# Download only videos not listed in the archive file.
+# Record the IDs of all downloaded videos in it.
+--download-archive "archive.txt"
+
+# Use the native HLS downloader instead of ffmpeg
+# --hls-prefer-native
+
+# Abort downloading when some fragment is not available
+--abort-on-unavailable-fragment
+
+# Number of retries for a fragment
+--fragment-retries 5
+
+# Set the preference for selecting the video format.
+#  1. 8k HDR 60fps
+#  2. 8k 60fps
+#  3. 8k av01 codec
+#  4. 8k
+#  5. 4k HDR 60fps
+#  6. 4k 60fps
+#  7. 4k av01 codec
+#  8. 4k
+#  9. 1440p HDR 60fps
+#  10. 1440p 60fps
+#  11. 1440p av01 codec
+#  12. 1440p
+#  13. 1080p HDR 60fps
+#  14. 1080p 60fps
+#  15. 1080 av01 codec
+#  16. 1080p
+#  17. 720p HDR 60fps
+#  18. 720p 60fps
+#  19. 720p av01 codec
+#  20. 720p
+#  21. best
+
+--format "(bestvideo[height>=4320][vcodec=vp9.2][fps=60]/
+           bestvideo[height>=4320][fps=60]/
+           bestvideo[height>=4320][vcodec^=av01]/
+           bestvideo[height>=4320]/
+           bestvideo[height>=2160][vcodec=vp9.2][fps=60]/
+           bestvideo[height>=2160][fps=60]/
+           bestvideo[height>=2160][vcodec^=av01]/
+           bestvideo[height>=2160]/
+           bestvideo[height>=1440][vcodec=vp9.2][fps=60]/
+           bestvideo[height>=1440][fps=60]/
+           bestvideo[height>=1440][vcodec^=av01]/
+           bestvideo[height>=1440]/
+           bestvideo[height>=1080][vcodec=vp9.2][fps=60]/
+           bestvideo[height>=1080][fps=60]/
+           bestvideo[height>=1080][vcodec^=av01]/
+           bestvideo[height>=1080]/
+           bestvideo[height>=720][vcodec=vp9.2][fps=60]/
+           bestvideo[height>=720][fps=60]/
+           bestvideo[height>=720][vcodec^=av01]/
+           bestvideo[height>=720]/
+           bestvideo)
+           +bestaudio"
+
+# Write video metadata to a .info.json file
+--write-info-json
+
+# Write video description to a .description file
+--write-description
+
+# If a merge is required (e.g. bestvideo+bestaudio),
+# output to given container format. One of mkv, mp4, ogg,
+# webm, flv. Ignored if no merge is required.
+--merge-output-format mkv
+
+# Write video annotations to a .annotations.xml file
+--write-annotations
+
+# Write all thumbnail image formats to disk
+--write-all-thumbnails
+
+# Download all the available subtitles of the video
+--all-subs
+
+# Embed subtitles in the video (only for mp4, webm and mkv videos)
+--embed-subs
+
+# Embed thumbnail in the audio as cover art
+--embed-thumbnail
+
+# Write metadata to the video file
+--add-metadata
+
+# Write metadata to the video file's xattrs (using dublin core and xdg standards)
+--xattrs
+
+# Specify ffmpeg/avconv audio quality, insert a value between 0 (better)
+# and 9 (worse) for VBR or a specific bitrate like 128K (default 5)
+--audio-quality 0
+
+# Ignore 'Liked00 videos' and 'Favorites' playlists
+# --match-filter "playlist_title != 'Liked videos' & playlist_title != 'Favorites'"
+
+# Output filename template, see the "OUTPUT TEMPLATE" for all the info
+--output "$PWD/%(uploader)s/%(title).80s/%(title).80s [%(format_id)s].%(ext)s"
