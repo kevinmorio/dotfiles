@@ -1,0 +1,25 @@
+# Specifies the ciphers allowed and their order of preference.
+Cipher chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+
+# Specifies the host key algorithms that the client wants to use in order of preference.
+HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256
+
+# Specifies the available KEX (Key Exchange) algorithms.
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+
+# Specifies the MAC (message authentication code) algorithms in order of preference.
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+# Indiactes that ssh should hash host names and addresses when they are added to ~/.ssh/known_hosts.
+# Default on Debian
+HashKnownHosts yes
+
+# Sets the number of server alive messages which may be sent without ssh receiving any messages back from the server.
+ServerAliveCountMax 15
+
+# Sets a timeout interval in seconds after which if no data has been received from the server, ssh will send a message through the
+# encrypted channel to request a response from the server.
+ServerAliveInterval 120
+
+# Specifies whether keys should be automatically added to a running ssh-agent.
+AddKeysToAgent yes
