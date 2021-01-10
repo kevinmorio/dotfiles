@@ -2,7 +2,7 @@
 #                          Zsh Configuration                          #
 #######################################################################
 
-## History settings
+## History settings {{{
 
 # File to save the history when an interactive shell exists.
 HISTFILE="$XDG_DATA_HOME"/zsh/zsh_history
@@ -49,9 +49,8 @@ setopt INC_APPEND_HISTORY
 # NOTE: Mutally exclusive to INC_APPEND_HISTORY
 # setopt SHARE_HISTORY
 
-
-
-## General
+# }}}
+## General {{{
 
 # Allow backspace to delete newlines
 bindkey "^?" backward-delete-char
@@ -74,8 +73,8 @@ setopt PROMPT_SUBST
 # Don't beep on error in Zle
 unsetopt BEEP
 
-
-## Appearance
+# }}}
+## Appearance {{{
 
 # Change cursor shape for different Vim modes.
 function zle-keymap-select {
@@ -103,17 +102,15 @@ zle-line-init() {
 autoload -U colors
 colors
 
-
-
-## Prompt
+# }}}
+## Prompt {{{
 
 # autoload -U promptinit
 # promptinit
 # prompt fade blue
 
-
-
-## Changing directories options
+# }}}
+## Changing directories options {{{
 
 # If a command can't be executed as a normal command, and the command is the name of a directory,
 # perform the `cd` command to that directory. This is the default behavior in fish.
@@ -128,9 +125,8 @@ setopt PUSHD_SILENT
 # Have `pushd` with no arguments act liike `pushd $HOME`.
 setopt PUSHD_TO_HOME
 
-
-
-## Completion settings
+# }}}
+## Completion settings {{{
 
 mkdir -p "$XDG_CACHE_HOME"/zsh
 autoload -Uz compinit
@@ -160,7 +156,8 @@ setopt COMPLETE_IN_WORD
 
 zmodload zsh/complist
 
-## Keybindings
+# }}}
+## Keybindings {{{
 
 # Use Vim keybindings.
 bindkey -v
@@ -174,17 +171,16 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 # Accept selection without having to press return twice.
 bindkey -M menuselect '^M' .accept-line
 
+# }}}
 
-
-## Modules
+## Modules {{{
 
 # A builtin for starting a command in a pseudo-terminal.
 # Required for the 'completion' autosuggestion strategy.
 zmodload zsh/zpty
 
-
-
-## Aliases
+# }}}
+## Aliases {{{
 
 # Make sudo work for aliases.
 alias sudo='sudo '
@@ -195,9 +191,8 @@ alias mv='mv -i'
 # Get top 10 of most used commands.
 alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
-
-
-## zplug configuration
+# }}}
+## zplug configuration {{{
 
 export ZPLUG_HOME="$XDG_DATA_HOME"/zplug
 source "$ZPLUG_HOME"/init.zsh
@@ -223,8 +218,6 @@ case "$(uname -s)" in
     ;;
 esac
 
-
-
 # Load plugins
 zplug "zsh-users/zsh-autosuggestions", at:develop
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -245,8 +238,8 @@ fi
 
 zplug load #--verbose
 
-
-## Zsh autosuggest options
+# }}}
+## Autosuggest options {{{
 
 # Use 'history' and 'completion' suggestion strategies.
 # 'completion' requires the zpty module
@@ -260,15 +253,14 @@ bindkey '^f' autosuggest-execute
 # Enable asyn mode
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-
-## Zsh syntax highlighting
+# }}}
+## Syntax highlighting {{{
 
 # Enable additional highlighters like `bracket` (rainbow brackets)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
-
-
-## Zsh history substring search
+# }}}
+## History substring search {{{
 
 # Use `j` and `k` or arrow keys to cycle history.
 bindkey -M vicmd 'k' history-substring-search-up
@@ -281,8 +273,14 @@ bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=green,bold"
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold"
 
+# }}}
+## thefuck setup {{{
 
 ## Setup 'thefuck' if installed and alias it to 'doit'.
 if (( $+commands[thefuck] )); then
     eval $(thefuck --alias doit)
 fi
+
+# }}}
+
+# vim: fdm=marker fdl=0
