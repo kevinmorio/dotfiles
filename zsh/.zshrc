@@ -280,3 +280,9 @@ bindkey '^[[B' history-substring-search-down
 # Set suitable colors for matches
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=green,bold"
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold"
+
+
+## Setup 'thefuck' if installed and alias it to 'doit'.
+if (( $+commands[thefuck] )); then
+    eval $(thefuck --alias doit)
+fi
