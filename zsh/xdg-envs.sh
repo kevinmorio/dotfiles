@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # The environment variables set in this file should prevent cluttering the home directory
 # with program specific files if it is possible without too much trouble.
 #
@@ -14,6 +12,8 @@
 # ~./android
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
 
 # Rust / Cargo
 # ~/.cargo
