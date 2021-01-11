@@ -52,9 +52,6 @@ setopt INC_APPEND_HISTORY
 # }}}
 ## General {{{
 
-# Allow backspace to delete newlines
-bindkey "^?" backward-delete-char
-
 # Sort filenames numerically if they are matched by a filename generation pattern.
 setopt NUMERIC_GLOB_SORT
 
@@ -72,6 +69,9 @@ setopt PROMPT_SUBST
 
 # Don't beep on error in Zle
 unsetopt BEEP
+
+# Disable flow control to allow binding to ctrl-s and ctrl-q.
+unsetopt FLOW_CONTROL
 
 # }}}
 ## Appearance {{{
@@ -171,8 +171,14 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 # Accept selection without having to press return twice.
 bindkey -M menuselect '^M' .accept-line
 
-# }}}
+# Allow backspace to delete newlines
+bindkey "^?" backward-delete-char
 
+# Store current input and clear line with ctrl-q.
+# Requires 'unsetopt FLOW_CONTROL'.
+bindkey '^q' push-line-or-edit
+
+# }}}
 ## Modules {{{
 
 # A builtin for starting a command in a pseudo-terminal.
@@ -197,14 +203,11 @@ alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 export ZPLUG_HOME="$XDG_DATA_HOME"/zplug
 source "$ZPLUG_HOME"/init.zsh
 
-# Load local files
+# Set variables according to XDG specification.
 zplug "$ZDOTDIR", from:local, use:"xdg-envs.sh"
 
 # Anaconda
 zplug "$ZDOTDIR", from:local, use:"anaconda.sh"
-
-# gpg-agent
-zplug "$ZDOTDIR", from:local, use:"gpg-agent.sh"
 
 ## OS specific configurations
 
@@ -279,6 +282,40 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold"
 ## Setup 'thefuck' if installed and alias it to 'doit'.
 if (( $+commands[thefuck] )); then
     eval $(thefuck --alias doit)
+fi
+
+# }}}
+## GnuPG setup {{{
+
+# Ensure that GPG_TTY is set for gpg-agent.
+export GPG_TTY=$(tty)
+
+# }}}
+## git setup {{{
+
+# Pretty git log based on current input or current branch.
+git_log() {
+  local pathspec="$BUFFER"
+  if [[ -z "$pathspec" ]]; then
+    pathspec="$(git branch --show-current)"
+  fi
+  git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "$pathspec"
+  zle reset-prompt
+  zle redisplay
+}
+
+# Bind ctrl-g-l to 'git_log' widget.
+zle -N git_log
+bindkey '^gl' git_log
+
+# Bind ctrl-s to 'git status'
+bindkey -s '^s' '^qgit status^M'
+
+# }}}
+## Nix setup {{{
+
+if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
+   source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 # }}}
