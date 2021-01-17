@@ -213,16 +213,8 @@ zplug "$ZDOTDIR", from:local, use:"xdg-envs.sh"
 zplug "$ZDOTDIR", from:local, use:"anaconda.sh"
 
 ## OS specific configurations
-
-case "$(uname -s)" in
-  Darwin)
-    source "$ZDOTDIR"/macos.zsh
-    zplug "$ZDOTDIR", from:local, use:"macos.zsh"
-    ;;
-  Linux)
-    zplug "$ZDOTDIR", from:local, use:"linux.zsh"
-    ;;
-esac
+zplug "$ZDOTDIR", from:local, use:"macos.zsh" if:"[[ $OSTYPE == *darwin* ]]"
+zplug "$ZDOTDIR", from:local, use:"linux.zsh" if:"[[ $OSTYPE == *linux* ]]"
 
 # Load plugins
 zplug "zsh-users/zsh-autosuggestions", at:develop
