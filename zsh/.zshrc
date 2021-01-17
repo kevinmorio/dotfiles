@@ -201,6 +201,9 @@ alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 ## zplug configuration {{{
 
 export ZPLUG_HOME="$XDG_DATA_HOME"/zplug
+if [[ ! -f "$ZPLUG_HOME"/init.zsh ]]; then
+    git clone "https://github.com/zplug/zplug" "$ZPLUG_HOME"
+fi
 source "$ZPLUG_HOME"/init.zsh
 
 # Set variables according to XDG specification.
