@@ -6,11 +6,6 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 # Load Zsh configuration from $XDG_CONFIG_HOME.
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 
-# Set default terminal applications
-export EDITOR=nvim
-export PAGER=less
-export BROWSER=firefox
-
 # Ensure that the path array doesn't contain duplicates
 # TODO: Check that all paths exist.
 typeset -U PATH path

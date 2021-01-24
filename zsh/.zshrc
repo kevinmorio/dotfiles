@@ -186,13 +186,18 @@ bindkey '^q' push-line-or-edit
 zmodload zsh/zpty
 
 # }}}
-## Aliases {{{
+## Aliases & environment variables {{{
 
 # Make sudo work for aliases.
 alias sudo='sudo '
-alias vim='nvim'
 alias rm='rm -i'
 alias mv='mv -i'
+
+if (( $+commands[nvim] )); then
+  alias vim='nvim'
+  export EDITOR=nvim
+  export VIUSAL=nvim
+fi
 
 # Get top 10 of most used commands.
 alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
@@ -315,4 +320,4 @@ fi
 
 # }}}
 
-# vim: fdm=marker fdl=0
+# vim: fdm=marker fdc=3 ft=zsh ts=4 sw=4 sts=4:
