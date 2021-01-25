@@ -308,8 +308,14 @@ git_log() {
 zle -N git_log
 bindkey '^gl' git_log
 
-# Bind ctrl-s to 'git status'
+# Bind ctrl-s to 'git status`.
 bindkey -s '^s' '^qgit status^M'
+
+# Bind ctrl-g-d to `git diff`.
+bindkey -s '^gd' '^qgit diff^M'
+
+# Bind ctrl-g-c to `git commit`.
+bindkey -s '^gc' '^qgit commit^M'
 
 # }}}
 ## Nix setup {{{
