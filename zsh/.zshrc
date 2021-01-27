@@ -299,9 +299,9 @@ git_log() {
   if [[ -z "$pathspec" ]]; then
     pathspec="$(git branch --show-current)"
   fi
-  git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "$pathspec"
+  git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold white)%G?%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "$pathspec"
+  printf "\n\n"
   zle reset-prompt
-  zle redisplay
 }
 
 # Bind ctrl-g-l to 'git_log' widget.
