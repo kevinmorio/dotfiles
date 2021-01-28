@@ -256,11 +256,48 @@ bindkey '^f' autosuggest-execute
 # Enable asyn mode
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+# Colors
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=245'
+
 # }}}
 ## Syntax highlighting {{{
 
 # Enable additional highlighters like `bracket` (rainbow brackets)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Colors
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[default]='none'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=196'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
+ZSH_HIGHLIGHT_STYLES[function]='fg=113'
+ZSH_HIGHLIGHT_STYLES[command]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=green'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='none'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='none'
+ZSH_HIGHLIGHT_STYLES[path]=''
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=''
+ZSH_HIGHLIGHT_STYLES[path_prefix]=''
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=''
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=142'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=142'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=142'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=245'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=cyan,bold'
 
 # }}}
 ## History substring search {{{
