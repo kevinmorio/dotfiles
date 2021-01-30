@@ -139,8 +139,10 @@ let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\
 set history=500
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
+
+" Enable switching from unsaved buffers
+set hidden
 
 " Ignore case when searching
 set ignorecase
@@ -195,10 +197,10 @@ set undofile
 " Show the effects of a command incrementally, as you type
 set inccommand=nosplit
 
-" Use two spaces for indentation
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+" Use four spaces for indentation
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 " Enable mouse support for all modes
