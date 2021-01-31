@@ -44,7 +44,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Specify a directory for plugins
-call plug#begin($XDG_DATA_HOME.'nvim/plugged')
+call plug#begin($XDG_DATA_HOME.'/nvim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
