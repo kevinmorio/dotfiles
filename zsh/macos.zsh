@@ -4,7 +4,9 @@
 export CLICOLOR=1
 
 # Make Emacs available on the command-line.
-export PATH="$PATH:$HOME/src/emacs/nextstep/Emacs.app/Contents/MacOS"
+if [[ -d "$HOME/src/emacs/nextstep/Emacs.app/Contents/MacOS" ]]; then
+    path+=("$HOME/src/emacs/nextstep/Emacs.app/Contents/MacOS")
+fi
 
 # iTerm2 shell integration
 if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
