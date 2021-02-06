@@ -1,0 +1,20 @@
+[user]
+    name = Kevin Morio
+    email = kevin@morio.me
+[commit]
+    gpgsign = true
+[tag]
+    gpgSign = true
+[pull]
+    ff = only
+[init]
+    gdefaultBranch = main
+[color]
+    ui = always
+[core]
+    pager = diff-highlight | less
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22

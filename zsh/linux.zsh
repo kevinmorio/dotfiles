@@ -15,3 +15,8 @@ alias screen-off="xset dpms force off"
 if (($+commands[maude])); then
     export MAUDE_LIB=/usr/share/maude
 fi
+
+# Add git contrib script diff-highlight to path
+if [[ -d "/usr/share/git/diff-highlight" ]]; then
+    path+=("/usr/share/git/diff-highlight")
+fi

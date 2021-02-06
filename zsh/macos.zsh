@@ -12,3 +12,8 @@ fi
 if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
 fi
+
+# Add git contrib script diff-highlight to path
+if [[ -d "/usr/local/share/git-core/contrib/diff-highlight" ]]; then
+    path+=("/usr/local/share/git-core/contrib/diff-highlight")
+fi
