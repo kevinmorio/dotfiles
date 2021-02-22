@@ -6,6 +6,8 @@
 - Neovim
 - GnuPG
 - youtube-dl
+- Git
+- SSH
 
 ## Notes
 
@@ -15,7 +17,7 @@ Due to the permissions imposed by GnuPG on the config files, they have to be cop
 On macOS it seems to be required to create the folder manually using `mkdir -p "$GNUPGHOME"`.
 Moreover, the permissions have to be adapted using `chmod 700 "$GNUPGHOME"`.
 
-See also [StackOverflow](https://superuser.com/questions/954509/what-are-the-correct-permissions-for-the-gnupg-enclosing-folder-gpg-warning).
+See [StackOverflow](https://superuser.com/questions/954509/what-are-the-correct-permissions-for-the-gnupg-enclosing-folder-gpg-warning).
 
 ### Zsh
 
