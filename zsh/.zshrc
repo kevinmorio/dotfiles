@@ -219,7 +219,7 @@ source "$ZPLUG_HOME"/init.zsh
 zplug "$ZDOTDIR", from:local, use:"xdg-envs.sh"
 
 # Anaconda
-zplug "$ZDOTDIR", from:local, use:"anaconda.sh", if:"(($+commands[conda]))"
+zplug "$ZDOTDIR", from:local, use:"anaconda.sh"
 
 ## OS specific configurations
 zplug "$ZDOTDIR", from:local, use:"macos.zsh", if:"[[ $OSTYPE == *darwin* ]]"
