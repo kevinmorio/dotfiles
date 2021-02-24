@@ -221,9 +221,14 @@ zplug "$ZDOTDIR", from:local, use:"xdg-envs.sh"
 # Anaconda
 zplug "$ZDOTDIR", from:local, use:"anaconda.sh"
 
-## OS specific configurations
+# OS specific configurations
 zplug "$ZDOTDIR", from:local, use:"macos.zsh", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "$ZDOTDIR", from:local, use:"linux.zsh", if:"[[ $OSTYPE == *linux* ]]"
+
+# Load private configuration if present
+if [[ -f "$ZDOTDIR"/private.zsh ]]; then
+    zplug "$ZDOTDIR", from:local, use:"private.zsh"
+fi
 
 # Load plugins
 zplug "zsh-users/zsh-autosuggestions", at:develop
