@@ -172,11 +172,9 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey -M menuselect '^M' .accept-line
 
 # Allow backspace / delete key to delete characters.
-# NOTE: On Linux "^?" needs to be bound while on macOS "^H".
-#       If iTerm 2 is used, ensure that 'Delete key sends ^H'
-#       is checked under 'iTerm2 > Preference > Profiles > Keys'.
-[[ $OSTYPE == *linux*  ]] && bindkey "^?" backward-delete-char
-[[ $OSTYPE == *darwin* ]] && bindkey "^H" backward-delete-char
+# NOTE: If iTerm 2 is used, ensure that 'Delete key sends ^H'
+#       is unchecked under 'iTerm2 > Preference > Profiles > Keys'.
+bindkey "^?" backward-delete-char
 
 # Store current input and clear line with ctrl-q.
 # Requires 'unsetopt FLOW_CONTROL'.
