@@ -4,3 +4,6 @@ qutebrowser/quickmarks
 
 # Ignore vim netrw history
 nvim/.netrwhist
+
+# Ignore Zsh sessions
+zsh/.zsh_sessions
