@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Convert all .aifc files in the directory to flac using ffmpeg.
+# aifc files are created by QuickTime Player's audio recording with maximum settings.
+#
+
+set -Eueo pipefail   
+
+for file in *.aifc; do
+    printf "Converting %s to flac\n" "$file"
+    ffmpeg -loglevel quiet -hide_banner -stats  -i "$file" -c:a flac "${file%.aifc}.flac"
+    printf "\n"
+done
