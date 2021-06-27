@@ -194,6 +194,9 @@ zmodload zsh/zpty
 alias sudo='sudo '
 alias rm='rm -i'
 alias mv='mv -i'
+alias cp='cp -i'
+
+alias ll='ls -lah'
 
 if (( $+commands[nvim] )); then
   alias vim='nvim'
@@ -203,6 +206,9 @@ fi
 
 # Get top 10 of most used commands.
 alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+
+# Highlight trailing whitespace using ripgrep
+alias htwp="rg --colors 'match:bg:red' '[[:blank:]]+$'"
 
 # }}}
 ## zplug configuration {{{
@@ -360,6 +366,16 @@ bindkey -s '^gd' '^qgit diff^M'
 
 # Bind ctrl-g-c to `git commit`.
 bindkey -s '^gc' '^qgit commit^M'
+
+# Go to the root directory of the repository.
+git_root() {
+    cd $(git rev-parse --show-toplevel)
+    zle reset-prompt
+}
+
+# Bind ctrl-g-r to `git_root`.
+zle -N git_root
+bindkey '^gr' git_root
 
 # }}}
 ## Nix setup {{{
