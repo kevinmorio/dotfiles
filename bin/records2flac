@@ -4,9 +4,17 @@
 # aifc files are created by QuickTime Player's audio recording with maximum settings.
 #
 
-set -Eueo pipefail   
+set -Eueo pipefail
 
-for file in *.aifc; do
+workingDir="."
+if [[ -d "$1" ]]; then
+    workingDir="${1%/}"
+elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    printf "usage: %s [directory]\n\nConvert all .aifcs files in the given directory (default '.') to flac.\n" "$(basename $0)"
+fi
+
+for file in "$workingDir"/*.aifc; do
+    [[ -e "$file" ]] || continue
     printf "Converting %s to flac\n" "$file"
     ffmpeg -loglevel quiet -hide_banner -stats  -i "$file" -c:a flac "${file%.aifc}.flac"
     printf "\n"
