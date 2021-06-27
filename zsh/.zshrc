@@ -385,5 +385,26 @@ if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]]; then
 fi
 
 # }}}
+## fzf setup {{{
+
+# Initial version from fzf's readme.
+fzf_ripgrep_vim() {
+    local initial_query="$BUFFER"
+    local rg_prefix="rg --column --line-number --no-heading --color=always --smart-case "
+    FZF_DEFAULT_COMMAND="$rg_prefix '$initial_query'"
+    local selection=$(fzf --bind "change:reload:$rg_prefix {q} || true" \
+                          --ansi --disabled --query "$initial_query" \
+                          --layout=reverse)
+    local parts=("${(s/:/)selection}")
+    zle reset-prompt
+    if [[ ! -z "$selection" ]]; then
+        vim "+${parts[2]}" "${parts[1]}"
+    fi
+}
+
+zle -N fzf_ripgrep_vim
+bindkey '^v' fzf_ripgrep_vim
+
+# }}}
 
 # vim: fdm=marker fdc=3 ft=zsh ts=4 sw=4 sts=4:
