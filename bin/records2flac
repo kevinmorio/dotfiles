@@ -10,7 +10,8 @@ workingDir="."
 if [[ -d "$1" ]]; then
     workingDir="${1%/}"
 elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    printf "usage: %s [directory]\n\nConvert all .aifcs files in the given directory (default '.') to flac.\n" "$(basename $0)"
+    printf "usage: %s [directory]\n\nConvert all .aifcs files in the given directory (default '.') to flac.\n" "$(basename "$0")"
+    exit 0
 fi
 
 for file in "$workingDir"/*.aifc; do
