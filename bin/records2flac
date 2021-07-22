@@ -7,11 +7,13 @@
 set -Eueo pipefail
 
 workingDir="."
-if [[ -d "$1" ]]; then
-    workingDir="${1%/}"
-elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    printf "usage: %s [directory]\n\nConvert all .aifcs files in the given directory (default '.') to flac.\n" "$(basename "$0")"
-    exit 0
+if [[ "$#" -ge 1 ]]; then
+    if [[ -d "$1" ]]; then
+        workingDir="${1%/}"
+    elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        printf "usage: %s [directory]\n\nConvert all .aifcs files in the given directory (default '.') to flac.\n" "$(basename "$0")"
+        exit 0
+    fi
 fi
 
 for file in "$workingDir"/*.aifc; do
@@ -20,3 +22,12 @@ for file in "$workingDir"/*.aifc; do
     ffmpeg -loglevel quiet -hide_banner -stats  -i "$file" -c:a flac "${file%.aifc}.flac"
     printf "\n"
 done
+
+read -p "Do you want to DELETE all .aifc files in '$workingDir'? [y/N] " -n1 -r
+echo
+if [[ "$REPLY" =~ ^y$ ]]; then
+    for file in "$workingDir"/*.aifc; do
+        printf "Deleting %s\n" "$file"
+        rm "$file"
+    done
+fi
