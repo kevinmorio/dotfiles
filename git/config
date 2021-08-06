@@ -18,3 +18,5 @@
     newHighlight = green bold 22
 [init]
 	defaultBranch = main
+[alias]
+	stash-copy = "!git stash store -m \"Storing copy on $(git rev-parse --abbrev-ref HEAD) ($(git rev-parse --short HEAD)): $1\" $(git stash create) #"
