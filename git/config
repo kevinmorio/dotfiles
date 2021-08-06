@@ -22,3 +22,5 @@
 	stash-copy = "!git stash store -m \"Storing copy on $(git rev-parse --abbrev-ref HEAD) ($(git rev-parse --short HEAD)): $1\" $(git stash create) #"
 [fetch]
 	prune = true
+[status]
+	showStash = true
