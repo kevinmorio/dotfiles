@@ -241,11 +241,7 @@ zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-completions"
 zplug "junegunn/fzf", use:"shell/{completion,key-bindings}.zsh", defer:2
 
-# Prompt
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-
-if !  zplug check --verbose; then
+if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then
     echo; zplug install
@@ -329,9 +325,17 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold"
 # }}}
 ## thefuck setup {{{
 
-## Setup 'thefuck' if installed and alias it to 'doit'.
+# Setup 'thefuck' if installed and alias it to 'doit'.
 if (( $+commands[thefuck] )); then
-    eval $(thefuck --alias doit)
+    eval "$(thefuck --alias doit)"
+fi
+
+# }}}
+## starship prompt setup {{{
+
+# Initialize 'starship' if installed
+if (( $+commands[starship] )); then
+    eval "$(starship init zsh)"
 fi
 
 # }}}
