@@ -1,6 +1,12 @@
 [character]
 error_symbol = "[✗](bold red)"
 
+[directory]
+read_only = " 🔒"
+
+[cmd_duration]
+format = "[$duration]($style) "
+
 [git_status]
 ahead = '⇡${count}'
 behind = '⇣${count}'
