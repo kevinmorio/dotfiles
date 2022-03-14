@@ -114,12 +114,12 @@ export PLTUSERHOME="$XDG_DATA_HOME"/racket
 
 # python-pylint
 # ~/.pylint.d
- export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 
 # TeamSpeak
 # ~/.ts3client
- export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
+export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
 
- # opam
- # ~/.opam
+# opam
+# ~/.opam
 export OPAMROOT="$XDG_DATA_HOME/opam"
