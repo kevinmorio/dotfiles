@@ -123,3 +123,7 @@ export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
 # opam
 # ~/.opam
 export OPAMROOT="$XDG_DATA_HOME/opam"
+
+# Go
+# ~/go
+export GOPATH="$XDG_DATA_HOME"/go
