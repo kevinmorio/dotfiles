@@ -73,6 +73,9 @@ unsetopt BEEP
 # Disable flow control to allow binding to ctrl-s and ctrl-q.
 unsetopt FLOW_CONTROL
 
+# Load completions from $ZDOTDIR.
+fpath=("$ZDOTDIR" $fpath)
+
 # }}}
 ## Appearance {{{
 
@@ -235,7 +238,7 @@ if [[ -f "$ZDOTDIR"/private.zsh ]]; then
 fi
 
 # Load plugins
-zplug "zsh-users/zsh-autosuggestions", at:develop
+zplug "zsh-users/zsh-autosuggestions" #, at:develop
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-completions"
@@ -255,7 +258,9 @@ zplug load #--verbose
 
 # Use 'history' and 'completion' suggestion strategies.
 # 'completion' requires the zpty module
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# 2021-08-16: Disabled since the history strategy makes spurious function calls
+# FIXME: This seems to be a side-effect with the rest of the configuration.
+# ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # C-o to accept suggestion.
 bindkey '^o' autosuggest-accept
@@ -392,6 +397,23 @@ fi
 ## fzf setup {{{
 
 # Initial version from fzf's readme.
+fzf_ripgrep_file() {
+    local initial_buffer="$BUFFER"
+    local initial_query=""
+    local rg_prefix="rg --column --line-number --no-heading --color=always --smart-case "
+    FZF_DEFAULT_COMMAND="$rg_prefix '$initial_query'"
+    local selection=$(fzf --bind "change:reload:$rg_prefix {q} || true" \
+                          --ansi --disabled --query "$initial_query" \
+                          --multi --layout=reverse | cut -f1 -d ':')
+    local parts=("${(@f)selection}")
+    zle reset-prompt
+    BUFFER="$initial_buffer${parts[@]}"
+    zle end-of-line
+}
+
+zle -N fzf_ripgrep_file
+bindkey '^w' fzf_ripgrep_file
+
 fzf_ripgrep_vim() {
     local initial_query="$BUFFER"
     local rg_prefix="rg --column --line-number --no-heading --color=always --smart-case "
@@ -408,6 +430,13 @@ fzf_ripgrep_vim() {
 
 zle -N fzf_ripgrep_vim
 bindkey '^v' fzf_ripgrep_vim
+
+# }}}
+# {{{ Other functions
+
+todo() {
+  printf "- [ ] %s\n" "$@" >> todo.org
+}
 
 # }}}
 
