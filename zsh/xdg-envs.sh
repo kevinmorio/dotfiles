@@ -127,3 +127,8 @@ export OPAMROOT="$XDG_DATA_HOME/opam"
 # Go
 # ~/go
 export GOPATH="$XDG_DATA_HOME"/go
+
+# Ruby / Ruby Gems
+# ~/.gem
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
