@@ -26,3 +26,5 @@
     prune = true
 [status]
     showStash = true
+[help]
+    autoCorrect = prompt
