@@ -207,11 +207,19 @@ if (( $+commands[nvim] )); then
   export VIUSAL=nvim
 fi
 
+if (( $+commands[exiftool] )); then
+  alias remove-tags="exiftool -all="
+fi
+
 # Get top 10 of most used commands.
 alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
 # Highlight trailing whitespace using ripgrep
 alias htwp="rg --colors 'match:bg:red' '[[:blank:]]+$'"
+
+if (( $+commands[ocrmypdf] )); then
+  alias ocr='ocrmypdf --image-dpi 600 --pdfa-image-compression lossless'
+fi
 
 # }}}
 ## zplug configuration {{{
