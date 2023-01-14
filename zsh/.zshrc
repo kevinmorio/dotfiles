@@ -350,6 +350,19 @@ fi
 export GPG_TTY=$(tty)
 
 # }}}
+## ssh-agent setup {{{
+
+if [[ "$(uname -s)" == "Linux" ]]; then
+    # From https://wiki.archlinux.org/title/SSH_keys
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+    fi
+    if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    fi
+fi
+
+# }}}
 ## git setup {{{
 
 # Pretty git log based on current input or current branch.
