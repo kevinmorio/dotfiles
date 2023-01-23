@@ -8,6 +8,8 @@
 - youtube-dl
 - Git
 - SSH
+- starship
+- kitty
 
 ## Notes
 
