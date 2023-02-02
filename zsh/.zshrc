@@ -455,6 +455,13 @@ zle -N fzf_ripgrep_vim
 bindkey '^v' fzf_ripgrep_vim
 
 # }}}
+# {{{ Other functions
+
+todo() {
+  printf "- [ ] %s\n" "$@" >> todo.org
+}
+
+# }}}
 ## rbenv setup {{{
 
 if (( $+commands[rbenv] )); then
@@ -462,11 +469,11 @@ if (( $+commands[rbenv] )); then
 fi
 
 # }}}
-# {{{ Other functions
+# {{{ Rust setup
 
-todo() {
-  printf "- [ ] %s\n" "$@" >> todo.org
-}
+if [[ -f "$XDG_DATA_HOME/cargo/env" ]]; then
+  source "$XDG_DATA_HOME/cargo/env"
+fi
 
 # }}}
 
