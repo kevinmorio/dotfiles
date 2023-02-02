@@ -455,6 +455,13 @@ zle -N fzf_ripgrep_vim
 bindkey '^v' fzf_ripgrep_vim
 
 # }}}
+## rbenv setup {{{
+
+if (( $+commands[rbenv] )); then
+    eval "$(rbenv init - zsh)"
+fi
+
+# }}}
 # {{{ Other functions
 
 todo() {
