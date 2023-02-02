@@ -469,6 +469,13 @@ if (( $+commands[rbenv] )); then
 fi
 
 # }}}
+# {{{ Go setup
+
+if (( $+commands[go] )); then
+  export PATH=$PATH:$(go env GOPATH)/bin
+fi
+
+# }}}
 # {{{ Rust setup
 
 if [[ -f "$XDG_DATA_HOME/cargo/env" ]]; then
