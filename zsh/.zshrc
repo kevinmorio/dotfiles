@@ -461,6 +461,11 @@ todo() {
   printf "- [ ] %s\n" "$@" >> todo.org
 }
 
+chpwd() {
+    emulate -L zsh
+    ls -a
+}
+
 # }}}
 ## rbenv setup {{{
 
