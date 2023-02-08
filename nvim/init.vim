@@ -106,8 +106,8 @@ let g:EasyMotion_smartcase = 1
 " map n <Plug>(easymotion-next)
 " map N <Plug>(easymotion-prev)
 
-" Enable italics for gruvbox theme
-let g:gruvbox_italic = 1
+" Enable airline theme
+let g:airline_theme = 'codedark'
 
 " Enable poverline symbols for eleline / vim-airline
 let g:eleline_powerline_fonts = 1
@@ -233,6 +233,11 @@ set termguicolors
 
 " Use dark colorscheme
 set background=dark
+
+" Activate italicized comments
+let g:codedark_italics = 1
+" let g:gruvbox_italic = 1
+
 
 " Set colorscheme
 " colorscheme gruvbox
