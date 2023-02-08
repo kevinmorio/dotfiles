@@ -212,6 +212,11 @@ autocmd! BufWritePre " :%s/\s\+$//e
 " Reload buffer when files changes on disk
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 
+" Jump to last cursor position
+augroup vimStartup | au!
+    autocmd BufRead * call setpos('.', getpos("'\""))
+augroup end
+
 " Hide line numbers in terminal
 augroup TerminalGroup
   au!
