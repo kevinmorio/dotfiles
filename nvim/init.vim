@@ -37,6 +37,15 @@ if empty(glob($XDG_DATA_HOME.'/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Figure out which Python version to use
+" See https://github.com/neovim/neovim/issues/1887
+if exists("$VIRTUAL_ENV")
+    " let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+    let g:python3_host_prog="/usr/local/bin/python3"
+" else
+"     let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
