@@ -388,6 +388,18 @@ git_log() {
 zle -N git_log
 bindkey '^gl' git_log
 
+# Pretty git branch --list --remote.
+git_branch_remote() {
+  local length=$(git branch --list --remote --format="%(refname:short)" | awk 'length > max_length { max_length = length } END { print max_length }')
+  git branch --list --remote --sort=-authordate --format="%(color:white bold)%(align:$length)%(refname:short)%(end)%(color:reset) %(color:blue bold)%(objectname:short)%(color:reset) - (%(authordate:relative)) %(contents:subject) - %(color:dim white)%(authorname)%(color:reset)"
+  printf "\n\n"
+  zle reset-prompt
+}
+
+# Bind ctrl-g-b to 'git_branch_remote' widget.
+zle -N git_branch_remote
+bindkey '^gb' git_branch_remote
+
 # Bind ctrl-s to 'git status`.
 bindkey -s '^s' '^qgit status^M'
 
