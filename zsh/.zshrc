@@ -406,8 +406,14 @@ bindkey -s '^s' '^qgit status^M'
 # Bind ctrl-g-d to `git diff`.
 bindkey -s '^gd' '^qgit diff^M'
 
+# Bind ctrl-g-d-s to `git diff --staged`.
+bindkey -s '^gds' '^qgit diff --staged^M'
+
 # Bind ctrl-g-c to `git commit`.
 bindkey -s '^gc' '^qgit commit^M'
+
+# Bind ctrl-g-p to `git push`.
+bindkey -s '^gp' '^qgit push^M'
 
 # Go to the root directory of the repository.
 git_root() {
