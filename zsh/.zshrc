@@ -361,12 +361,9 @@ export GPG_TTY=$(tty)
 ## ssh-agent setup {{{
 
 if [[ "$(uname -s)" == "Linux" ]]; then
-    # From https://wiki.archlinux.org/title/SSH_keys
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-        ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-    fi
-    if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    # Using a systemd user service to start ssh-agent.
+    if [[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
+        export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
     fi
 fi
 
