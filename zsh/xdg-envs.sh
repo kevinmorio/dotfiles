@@ -132,3 +132,7 @@ export GOPATH="$XDG_DATA_HOME"/go
 # ~/.gem
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+
+# rbenv
+# ~/.rbenv
+export RBENV_ROOT="$XDG_DATA_HOME"/rbenv
