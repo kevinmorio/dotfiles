@@ -460,7 +460,7 @@ fzf_ripgrep_vim() {
     local parts=("${(s/:/)selection}")
     zle reset-prompt
     if [[ ! -z "$selection" ]]; then
-        print -s vim "+${parts[2]}" "${parts[1]}"
+        print -s vim "+${parts[2]}" "\'${parts[1]}\'"
         vim "+${parts[2]}" "${parts[1]}"
         zle accept-line
     fi
