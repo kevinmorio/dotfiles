@@ -414,7 +414,7 @@ bindkey -s '^gp' '^qgit push^M'
 
 # Go to the root directory of the repository.
 git_root() {
-    cd $(git rev-parse --show-toplevel)
+    cd "$(git rev-parse --show-toplevel)"
     zle reset-prompt
 }
 
