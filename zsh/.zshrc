@@ -211,6 +211,9 @@ if (( $+commands[exiftool] )); then
   alias remove-tags="exiftool -all="
 fi
 
+# Avpid issues due to missing term info when kitty is used.
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 # Get top 10 of most used commands.
 alias top10='print -l -- ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
